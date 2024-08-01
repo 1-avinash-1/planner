@@ -1,0 +1,220 @@
+/* Your existing styles */
+
+@media (min-width: 120px) and (max-width: 800px) {
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    html, body {
+        height: 100%;
+        background-color: #F3F2EE;
+    }
+    #bar .c {
+        color: aliceblue;
+    }
+    #Logo {
+        font-size: 200%;
+    }
+    #bar {
+        height: 10vh;
+        background-color: rgb(34, 34, 34);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .c {
+        display: flex;
+        align-items: center;
+    }
+    .im {
+        display: flex;
+        box-shadow: #000000;
+    
+    }
+    .resizeimg{
+        height: 90vh;
+    }
+    hr {
+        color:rgb(34, 34, 34);
+        height: 0.3vh;
+        background-color: #000000;
+        margin-bottom: 3vh;
+    }
+    #quote {
+        margin: auto;
+        text-align: justify;
+        font-size: 120%;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    #out {
+        color: #000000;
+        margin-top: 20px;
+        font-size: 18px;
+        white-space: pre-wrap;
+    }
+    .container {
+        margin-top: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+    .con {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    #form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    input, button {
+        border-radius: 10px;
+        outline: 0;
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    #frmpic .wrkpic{
+        width: 70%;
+        height: 50vh;
+        padding: none;
+        
+        margin: none;
+        margin-left: 15%;
+        position:static;
+    }
+    #frmpic .butcon{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #txtbut{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 170%;
+        text-align: center;
+        margin-top: 20%;
+    }
+    #frmpic .but{
+        color: aliceblue;
+        margin: 5%;
+        margin-top: 10%;
+        background-color: rgb(34, 34, 34);
+        border-radius:35px;
+        padding: 4% 8%;
+        margin-bottom: 20%;
+        font-size: 20px;
+        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.568);
+    }
+    
+    .footer{
+        background-color: #000000;
+    }
+
+    .footerContainer{
+        width: 100%;
+        padding: 70px 0px 20px;
+    }
+
+    .socialIcons{
+        display: flex;
+        justify-content: center;
+    }
+
+    .socialIcons a{
+        text-decoration: none;
+        padding: 10px;
+        background-color: white;
+        margin: 10px;
+        border-radius: 50%;
+    }
+
+    .socialIcons a i{
+        font-size: 2em;
+        color: #000000;
+        opacity: 0.9;
+    }
+
+    .socialIcons a:hover{
+        background-color: #111;
+        transition: 0.5s;
+    }
+
+    .socialIcons a:hover{
+        color: white;
+        transition: 0.5s;
+    }
+
+    .footerNav{
+        margin: 30px 0;
+    }
+
+    .footerNav ul{
+        display: flex;
+        justify-content: center;
+        list-style: none;
+    }
+
+    .footerNav ul li a{
+        color: white;
+        margin: 20px;
+        text-decoration: none;
+        font-size: 1.3em;
+        opacity: 0.7;
+        transition: 0.5s;
+    }
+
+    .footerNav ul li a:hover{
+        opacity: 1;
+    }
+
+    .footerBottom{
+        background-color: #000000;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .footerBottom p{
+        color: azure;
+    }
+
+    .designer{
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 400;
+        margin: 0px 5px;
+    }
+
+    @media (max-width:700px){
+        .footerNav ul{
+            flex-direction: column;
+        }
+        .footerNav ul li{
+            width: 100%;
+            text-align: center;
+            margin:10px;
+        }
+    }
+
+    #quote{
+        margin: 80px;
+    }
+    .footer-content {
+        position: absolute;
+        white-space: nowrap;
+        animation: scroll 10s linear infinite;
+    }
+    @keyframes scroll {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+}

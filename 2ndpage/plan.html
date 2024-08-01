@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Details</title>
+    <link rel="stylesheet" href="planstyle.css">
+</head>
+<body>
+    <div class="det-wrapper">
+        <div class="det-container">
+            <p>Enter details</p>
+            <form id="details-form" onsubmit="handleSubmit(event)">
+                <div id="in-group">
+                    <label for="Table-Name">Table Name : </label>
+                    <input id="Table-Name" name="Table-Name" required>
+                </div>
+                <div id="in-group">
+                    <label for="SleepHours">Sleep Hours (x - y) : </label>
+                    <input id="SleepHours" name="SleepHours" required placeholder="00:00-00:00">
+                </div>
+                <div id="in-group">
+                    <label for="Tna">Not available time : </label>
+                    <input id="Tna" name="Tna" required placeholder="00:00-00:00,00:00-00:00">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form values
+            const tableName = document.getElementById('Table-Name').value;
+            const sleepHours = document.getElementById('SleepHours').value;
+            const notAvailable = document.getElementById('Tna').value;
+
+            // Redirect to planner.html in /3rdpage with query parameters
+            window.location.href = `../3rdpage/planner.html?Table-Name=${encodeURIComponent(tableName)}&SleepHours=${encodeURIComponent(sleepHours)}&Tna=${encodeURIComponent(notAvailable)}`;
+        }
+    </script>
+</body>
+</html>

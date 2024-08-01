@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Planner</title>
+    <link rel="stylesheet" href="gobro.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .planner-wrapper {
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        h2 {
+            margin: 10px 0;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            overflow-x: auto; /* Allows horizontal scrolling on small screens */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+            word-wrap: break-word; /* Handles long text */
+        }
+        th {
+            background-color: #f2f2f2;
+            font-size: 16px;
+        }
+        .btn-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 12px; /* Adjust font size for smaller screens */
+                padding: 6px; /* Adjust padding for smaller screens */
+            }
+            h2 {
+                font-size: 18px; /* Adjust heading font size for mobile */
+            }
+        }
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .btn-container {
+                display: none; /* Hide the print button during print */
+            }
+            .planner-wrapper {
+                margin: 10mm; /* Ensure margins fit within printable area */
+                padding: 0;
+                text-align: center;
+                 /* Center the text */
+            }
+            h2 {
+                margin: 0;
+                font-size: 20px; /* Adjust font size for print */
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                page-break-inside: auto; /* Prevent table from breaking across pages */
+            }
+            table th, table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            @page {
+                margin: 10mm; /* Set margins for print */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="planner-wrapper">
+        <h2 id="table-name"></h2>
+        <table id="planner-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- JavaScript will dynamically generate rows excluding sleep and unavailable times -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="btn-container">
+        <button onclick="window.print()">Print Planner</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tableName = urlParams.get('Table-Name');
+            const sleepHours = urlParams.get('SleepHours') || "22:00-06:00";
+            const notAvailable = urlParams.get('Tna') ? urlParams.get('Tna').split(',') : [];
+
+            document.getElementById('table-name').textContent = tableName || "Weekly Planner";
+
+            const [sleepStart, sleepEnd] = sleepHours.split('-').map(time => parseInt(time.replace(':', ''), 10));
+            const notAvailableTimes = notAvailable.map(time => time.split('-').map(t => parseInt(t.replace(':', ''), 10)));
+
+            const startTime = 0;
+            const endTime = 24;
+            const tbody = document.querySelector('#planner-table tbody');
+
+            for (let hour = startTime; hour < endTime; hour++) {
+                for (let minutes = 0; minutes < 60; minutes += 30) {
+                    const time = hour * 100 + minutes;
+                    if ((time >= sleepStart && time < sleepEnd) || notAvailableTimes.some(([naStart, naEnd]) => time >= naStart && time < naEnd)) {
+                        continue;
+                    }
+
+                    const row = document.createElement('tr');
+                    const timeCell = document.createElement('td');
+                    timeCell.textContent = `${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+                    row.appendChild(timeCell);
+
+                    for (let i = 0; i < 7; i++) {
+                        const cell = document.createElement('td');
+                        cell.setAttribute('contenteditable', 'true');
+                        row.appendChild(cell);
+                    }
+                    tbody.appendChild(row);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
